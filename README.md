@@ -12,13 +12,12 @@ Currently in Alpha
 Currently the Miami-Dade Transit API blocks outside access through an oversight in their CORs.
 Making the use of that api in other applications difficult.
 
-## How
+## Project setup
+
 #### Dependencies
 Ruby 2.2.0, Rails 4.2.0
 
-#### Project setup
-
-* OSX *
+#### OSX
 - Install Brew
 - Install RVM
 - Install Ruby
