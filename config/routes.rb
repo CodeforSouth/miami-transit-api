@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'buses' => 'miami_dade_transit#buses'
   get 'bus/:id' => 'miami_dade_transit#bus'
+  post 'tracker' => 'miami_dade_transit#tracker_new'
+  get 'tracker' => 'tracker#live'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
