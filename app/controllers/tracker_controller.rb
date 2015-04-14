@@ -1,5 +1,4 @@
 class TrackerController < ApplicationController
-  require 'json'
 
   def live
     @tracker = Tracker.live
@@ -12,7 +11,6 @@ class TrackerController < ApplicationController
         format.json { render json: @tracker.response.code, status: :unprocessable_entity }
       end
     end
-
   end
 
 end
