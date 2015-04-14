@@ -1,4 +1,6 @@
 class TrackerController < ApplicationController
+  before_action :normalize_params!
+
 
   def live
     @tracker = Tracker.live

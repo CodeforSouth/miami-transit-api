@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'tracker' => 'miami_dade_transit#tracker_new'
   get 'tracker' => 'tracker#live'
 
+  get 'api/:endpoint' => 'miami_dade_transit#proxy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :cors_preflight_check
   after_action :cors_set_access_control_headers
-  before_action :normalize_params!
 
   # For all responses, return the CORS access control headers.
 

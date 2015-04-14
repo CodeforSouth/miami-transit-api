@@ -5,9 +5,15 @@ class MiamiDadeTransit
   base_uri 'http://www.miamidade.gov/transit/WebServices/'
 
   # get all buses
-  def self.buses
+  def self.buses(params={})
     endpoint = '/buses'
-    self.get(endpoint)
+    options = {
+      BusID: params[:busid],
+      BusName: params[:busname],
+      RouteID: params[:routeid],
+      Dir: params[:dir]
+    }
+    self.get(endpoint, options)
   end
 
   # get a bus by id
@@ -18,11 +24,20 @@ class MiamiDadeTransit
 
   # POIs
   # Nearby/?Lat=25.787057&Long=-80.189107
-  def self.nearby(lat, long)
+  def self.nearby(params)
     endpoint = '/nearby/'
+
     params = {
-        Lat: lat.to_f,
-        Long: long.to_f}
+      Lat: params[:lat],
+      Long: params[:long],
+      Type: params[:type],
+    }
+
+    self.get(endpoint, :query => params)
+  end
+
+  def self.proxy(route, params)
+    endpoint = "#{'/' + route}"
     self.get(endpoint, :query => params)
   end
 
