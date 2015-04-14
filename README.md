@@ -24,7 +24,7 @@ Ruby 2.2.0, Rails 4.2.0
 - Install Rails
 - Pull Repo
 - Bundle
-- ```bash rails server ```
+- ```rails server ```
 
 Contacts
 --------
