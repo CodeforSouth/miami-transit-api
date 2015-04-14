@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'buses' => 'miami_dade_transit#buses'
   get 'bus/:id' => 'miami_dade_transit#bus'
+  get 'nearby' => 'miami_dade_transit#nearby'
+
   post 'tracker' => 'miami_dade_transit#tracker_new'
   get 'tracker' => 'tracker#live'
 

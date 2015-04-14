@@ -1,5 +1,4 @@
 class MiamiDadeTransitController < ApplicationController
-  require 'json'
 
   def buses
     @buses = MiamiDadeTransit.buses
@@ -25,6 +24,24 @@ class MiamiDadeTransitController < ApplicationController
         format.json { render json: @bus.response.code, status: :unprocessable_entity }
       end
     end
+  end
+
+  def nearby
+
+    lat = params[:lat]
+    long = params[:long]
+
+    @nearby = MiamiDadeTransit.nearby(lat, long)
+
+    respond_to do |format|
+      if @nearby.response.code == '200'
+        format.json { render json: @nearby, status: :ok }
+        format.xml { render xml: @nearby.body, status: :ok }
+      else
+        format.json { render json: @nearby.response.code, status: :unprocessable_entity }
+      end
+    end
+
   end
 
 end

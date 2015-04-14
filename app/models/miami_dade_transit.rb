@@ -16,4 +16,14 @@ class MiamiDadeTransit
     self.get(endpoint)
   end
 
+  # POIs
+  # Nearby/?Lat=25.787057&Long=-80.189107
+  def self.nearby(lat, long)
+    endpoint = '/nearby/'
+    params = {
+        Lat: lat.to_f,
+        Long: long.to_f}
+    self.get(endpoint, :query => params)
+  end
+
 end
