@@ -9,13 +9,16 @@ A REST interface layer to expose Miami-Dade Transit API's and City of Miami Trol
   Is a proxy and supports all endpoints documented here [Miami-Dade Transit WebServices](http://www.miamidade.gov/transit/WebServices/Transit_XML_Data_Feeds.pdf)
   
   **ie.**
-  - https://miami-transit-api.herokuapp.com/api/MoverTrains.json
   
-    Gets all Metromover Trains as json.
-  
-  - https://miami-transit-api.herokuapp.com/api/MoverTrains.json?TrainID=101
-  
-    Will get a singular train.
+  - http://www.miamidade.gov/transit/WebServices/MoverTrains/
+    - http://miami-transit-api.herokuapp.com/api/MoverTrains.json
+    
+      Gets all Metromover Trains as json.
+
+  - http://www.miamidade.gov/transit/WebServices/MoverTrains/?TrainID=101
+    - https://miami-transit-api.herokuapp.com/api/MoverTrains.json?TrainID=101
+
+      Will get a singular train.
   
   ***Note:***
   Always assume it is case-sensitive.
