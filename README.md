@@ -4,7 +4,7 @@ A REST interface layer to expose Miami-Dade Transit API's and City of Miami Trol
 
 ### API
 
-- ```/api/:endpoint(.json, .xml)```
+- ```/api/:endpoint(.json, .xml)?param=value```
 
   Is a proxy and supports all endpoints documented here [Miami-Dade Transit WebServices](http://www.miamidade.gov/transit/WebServices/Transit_XML_Data_Feeds.pdf)
   
