@@ -30,7 +30,7 @@ class MiamiDadeTransitController < ApplicationController
   def nearby
 
     @nearby = MiamiDadeTransit.nearby(params)
-
+    
     respond_to do |format|
       if @nearby.response.code == '200'
         format.json { render json: @nearby, status: :ok }

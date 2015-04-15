@@ -27,17 +27,17 @@ class MiamiDadeTransit
   def self.nearby(params)
     endpoint = '/nearby/'
 
-    params = {
+    options = {
       Lat: params[:lat],
       Long: params[:long],
       Type: params[:type],
     }
 
-    self.get(endpoint, :query => params)
+    self.get(endpoint, :query => options)
   end
 
   def self.proxy(route, params)
-    endpoint = "#{'/' + route}"
+    endpoint = "#{'/' + route +'/'}"
     self.get(endpoint, :query => params)
   end
 
