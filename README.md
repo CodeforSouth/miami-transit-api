@@ -2,6 +2,24 @@
 
 A REST interface layer to expose Miami-Dade Transit API's and City of Miami Trolley Services Data
 
+### API
+
+- ```/api/:endpoint(.json, .xml)```
+
+  Is a proxy and supports all endpoints documented here [Miami-Dade Transit WebServices](http://www.miamidade.gov/transit/WebServices/Transit_XML_Data_Feeds.pdf)
+  
+  **ie.**
+  - https://miami-transit-api.herokuapp.com/api/MoverTrains.json
+  
+    Gets all Metromover Trains as json.
+  
+  - https://miami-transit-api.herokuapp.com/api/MoverTrains.json?TrainID=101
+  
+    Will get a singular train.
+  
+  ***Note:***
+  Always assume it is case-sensitive.
+
 #### Status 
 Currently in Alpha
 
