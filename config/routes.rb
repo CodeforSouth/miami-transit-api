@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   post 'tracker' => 'miami_dade_transit#tracker_new'
   get 'tracker' => 'tracker#live'
 
-  get 'api/trolley//vehicles' => 'miami_city_transit#vehicles'
+  get 'api/trolley/routes' => 'miami_city_transit#routes'
+  get 'api/trolley/stops' => 'miami_city_transit#stops'
+  get 'api/trolley/vehicles' => 'miami_city_transit#vehicles'
   get 'api/trolley' => 'miami_city_transit#proxy'
+
   get 'api/:endpoint' => 'miami_dade_transit#proxy'
 
   # The priority is based upon order of creation: first created -> highest priority.
