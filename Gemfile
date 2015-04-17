@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
 ruby '2.2.0'
+
+gem 'rails', '4.2.0'
+
 
 # Libraries
 ####################
@@ -25,6 +25,7 @@ group :production do
   gem 'puma'
   gem 'pg' # Postgresql DB
   gem 'rails_12factor' # Heroku asset handler
+  gem 'raygun4ruby' # Off-site logging Raygun.io
 end
 
 ## Views
