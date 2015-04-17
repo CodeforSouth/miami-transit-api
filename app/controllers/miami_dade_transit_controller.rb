@@ -1,6 +1,4 @@
 class MiamiDadeTransitController < ApplicationController
-  require 'JSON'
-
   before_action 'normalize_params!', :except => :proxy
 
   def buses
