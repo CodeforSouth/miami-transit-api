@@ -1,4 +1,6 @@
 class MiamiDadeTransitController < ApplicationController
+  require 'JSON'
+
   before_action 'normalize_params!', :except => :proxy
 
   def buses
@@ -49,9 +51,11 @@ class MiamiDadeTransitController < ApplicationController
 
     @api = MiamiDadeTransit.proxy(endpoint, endpoint_params)
 
+    # binding.pry
+
     respond_to do |format|
       if @api.response.code == '200'
-        format.json { render json: @api, status: :ok }
+        format.json { render json: @api.to_json.encode(Encoding::UTF_8), status: :ok }
         format.xml { render xml: @api.body, status: :ok }
       else
         format.json { render json: @api.response.code, status: :unprocessable_entity }
