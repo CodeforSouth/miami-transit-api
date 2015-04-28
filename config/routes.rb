@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'api/:endpoint' => 'miami_dade_transit#proxy'
 
+  get 'trolley.:format' => 'trolley#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
