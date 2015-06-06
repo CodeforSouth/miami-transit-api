@@ -76,6 +76,16 @@ class TrolleysController < ApplicationController
     render text: csv_response
   end
 
+  def frequencies
+    csv_response = CSV.generate do |csv|
+      csv << %w[trip_id start_time end_time headway_secs]
+      routes_data.each do |route|
+        csv << [route['id'], '06:30:00', '23:00:00', '900']
+      end
+    end
+    render text: csv_response
+  end
+
   private
 
   def vehicle_api

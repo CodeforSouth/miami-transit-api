@@ -26,10 +26,10 @@ Rails.application.routes.draw do
       get :agency
       get :stops
       get :routes
-
       get :trips
       get :stop_times
       get :calendar
+      get :frequencies
     end
   end
 
