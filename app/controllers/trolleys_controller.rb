@@ -1,4 +1,7 @@
 class TrolleysController < ApplicationController
+  START_TIME = '06:30:00'
+  END_TIME   = '23:00:00'
+
   def index
     @translator = TrolleyTranslator.new vehicles: vehicle_api.body, routes: routes_api.body, stops: stops_api.body
 
@@ -69,7 +72,12 @@ class TrolleysController < ApplicationController
       csv << %w[trip_id arrival_time departure_time stop_id stop_sequence]
       routes_data.each do |route|
         route['stops'].each_with_index do |stop_id, i|
-          csv << [route['id'], '', '', stop_id, i]
+          time = if i == 0
+            START_TIME
+          elsif i == route['stops'].length - 1
+            END_TIME
+          end
+          csv << [route['id'], time, time, stop_id, i]
         end
       end
     end
@@ -80,7 +88,7 @@ class TrolleysController < ApplicationController
     csv_response = CSV.generate do |csv|
       csv << %w[trip_id start_time end_time headway_secs]
       routes_data.each do |route|
-        csv << [route['id'], '06:30:00', '23:00:00', '900']
+        csv << [route['id'], START_TIME, END_TIME, '900']
       end
     end
     render text: csv_response
