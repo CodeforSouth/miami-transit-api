@@ -11,25 +11,23 @@ class TrolleyTranslator
 
   def to_gtfs(encode: true)
     message.entity = vehicles_data.map do |veh|
+      in_service = veh['inService'] == 1
       FeedEntity.new.tap do |entity|
         entity.id = "#{veh['equipmentID']}-#{veh['routeID']}"
-        entity.is_deleted = false
+        entity.is_deleted = !in_service
 
-        entity.trip_update = TripUpdate.new.tap do |tu|
-          tu.trip = TripDescriptor.new.tap do |trip|
-            trip.route_id = veh['routeID'].to_s
-            trip.trip_id = veh['routeID'].to_s
-            trip.schedule_relationship = TripDescriptor::ScheduleRelationship::UNSCHEDULED
+        if in_service
+          entity.trip_update = TripUpdate.new.tap do |tu|
+            tu.trip = TripDescriptor.new.tap do |trip|
+              trip.route_id = veh['routeID'].to_s
+              trip.trip_id = veh['routeID'].to_s
+              trip.schedule_relationship = TripDescriptor::ScheduleRelationship::UNSCHEDULED
+            end
+            tu.stop_time_update = get_stop_time_update(veh)
           end
-          tu.stop_time_update = get_stop_time_update(veh)
         end
 
         entity.vehicle = VehiclePosition.new.tap do |vp|
-          vp.trip = TripDescriptor.new.tap do |trip|
-            trip.route_id = veh['routeID'].to_s
-            trip.trip_id = veh['routeID'].to_s
-            trip.schedule_relationship = TripDescriptor::ScheduleRelationship::UNSCHEDULED
-          end
           vp.vehicle = VehicleDescriptor.new.tap do |vehicle|
             vehicle.id = veh['equipmentID']
           end
@@ -37,8 +35,16 @@ class TrolleyTranslator
             pos.latitude = veh['lat']
             pos.longitude = veh['lng']
           end
-          vp.stop_id = veh['nextStopID'].to_s
           vp.timestamp = veh['receiveTime']
+
+          if in_service
+            vp.trip = TripDescriptor.new.tap do |trip|
+              trip.route_id = veh['routeID'].to_s
+              trip.trip_id = veh['routeID'].to_s
+              trip.schedule_relationship = TripDescriptor::ScheduleRelationship::UNSCHEDULED
+            end
+            vp.stop_id = veh['nextStopID'].to_s
+          end
         end
       end
     end
