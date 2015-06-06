@@ -1,18 +1,19 @@
 class TrolleyController < ApplicationController
   def index
-    @api = MiamiCityTransit.proxy(
+    vehicle_api = MiamiCityTransit.proxy(
       service: 'get_vehicles',
       'includeETAData' => 1,
       'orderedETAArray' => 1,
       token: 'TESTING'
     )
+    routes_api = MiamiCityTransit.routes
+    stops_api = MiamiCityTransit.stops
+
+    @translator = TrolleyTranslator.new vehicles: vehicle_api.body, routes: routes_api.body, stops: stops_api.body
 
     respond_to do |format|
-      format.json { render text: @api.body }
-      format.gtfsrt do
-        translator = TrolleyTranslator.new @api.body
-        send_data translator.to_gtfs
-      end
+      format.json { render json: @translator.to_gtfs(encode: false) }
+      format.gtfsrt { send_data @translator.to_gtfs }
     end
   end
 end
