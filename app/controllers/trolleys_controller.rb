@@ -3,7 +3,7 @@ class TrolleysController < ApplicationController
   END_TIME   = '23:00:00'
 
   def index
-    @translator = TrolleyTranslator.new vehicles: vehicle_api.body, routes: routes_api.body, stops: stops_api.body
+    @translator = TrolleyTranslator.new vehicles: vechicles_data, routes: routes_data, stops: stops_data
 
     respond_to do |format|
       format.json { render json: @translator.to_gtfs(encode: false) }
