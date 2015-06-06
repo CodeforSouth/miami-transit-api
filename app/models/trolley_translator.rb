@@ -16,7 +16,7 @@ class TrolleyTranslator
         entity.is_deleted = false
         entity.vehicle = VehiclePosition.new.tap do |vp|
           vp.trip = TripDescriptor.new.tap do |trip|
-            trip.route_id = veh['routeID']
+            trip.route_id = veh['routeID'].to_s
             trip.schedule_relationship = TripDescriptor::ScheduleRelationship::UNSCHEDULED
           end
           vp.vehicle = VehicleDescriptor.new.tap do |vehicle|
@@ -26,7 +26,7 @@ class TrolleyTranslator
             pos.latitude = veh['lat']
             pos.longitude = veh['lng']
           end
-          vp.stop_id = veh['nextStopID']
+          vp.stop_id = veh['nextStopID'].to_s
           vp.timestamp = veh['receiveTime']
         end
       end
