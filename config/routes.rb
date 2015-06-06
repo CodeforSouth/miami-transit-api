@@ -27,9 +27,9 @@ Rails.application.routes.draw do
       get :stops
       get :routes
 
-      # get :trips
-      # get :stop_times
-      # get :calendar
+      get :trips
+      get :stop_times
+      get :calendar
     end
   end
 

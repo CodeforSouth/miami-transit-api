@@ -17,6 +17,7 @@ class TrolleyTranslator
         entity.vehicle = VehiclePosition.new.tap do |vp|
           vp.trip = TripDescriptor.new.tap do |trip|
             trip.route_id = veh['routeID']
+            trip.schedule_relationship = TripDescriptor::ScheduleRelationship::UNSCHEDULED
           end
           vp.vehicle = VehicleDescriptor.new.tap do |vehicle|
             vehicle.id = veh['equipmentID']
