@@ -62,7 +62,7 @@ class TrolleysController < ApplicationController
   def calendar
     csv_response = CSV.generate do |csv|
       csv << %w[service_id monday tuesday wednesday thursday friday saturday sunday start_date end_date]
-      csv << %w[1          1      1       1         1        1      1        1      2015-01-01 2015-12-31]
+      csv << %w[1          1      1       1         1        1      1        1      20150101 20151231]
     end
     render text: csv_response
   end
