@@ -38,6 +38,7 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.0)
     awesome_print (1.6.1)
+    beefcake (1.1.0.pre1)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -174,6 +175,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  beefcake (= 1.1.0.pre1)
   better_errors
   binding_of_caller
   coffee-rails
