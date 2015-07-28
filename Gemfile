@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.2.2'
 
 gem 'rails', '4.2.0'
-gem 'beefcake', '1.1.0.pre1'
+gem 'beefcake', '1.1.0'
 
 # Libraries
 ####################

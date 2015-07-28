@@ -18,7 +18,8 @@ Rails.application.routes.draw do
 
   get 'api/:endpoint' => 'miami_dade_transit#proxy'
 
-  get 'trolley.:format' => 'trolley#index'
+  get 'trolley.:format' => 'trolleys#index'
+  get 'bus.:format' => 'buses#index'
 
   resources :trolleys, only: [:index] do
     # txt files
